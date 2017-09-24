@@ -21,14 +21,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  
   <body>
   	<%=request.getAttribute("msg")%>
+  	<%
+  		//使用request获取本地的cookie
+  		Cookie[] coArray = request.getCookies();
+  		String username = "";//默认的用户名
+  		String userpwd = "";//默认的密码
+  		for(Cookie cookie:coArray){
+  			if("username".equals(cookie.getName())){
+  					username = cookie.getValue();
+  			}else if("userpwd".equals(cookie.getName())){
+  					userpwd = cookie.getValue();
+  			}
+  		}
+  	 %>
     <form action="serverLogin.jsp" method="post">
-     		<label>用户名:<input name="logName"></label><br>
-    		<label>密码:<input name="logPwd" type="password"></label><br>
+     		<label>用户名:<input name="logName" value="<%=username%>"></label><br>
+    		<label>密码:<input name="logPwd" type="password"  value="<%=userpwd%>"></label><br>
     		<button type="submit">登录</button>
     </form>
-    <button onclick="register.jsp">注册</button>
+    <button onclick="javascript:location.href='register.jsp'">注册</button>
   </body>
 </html>

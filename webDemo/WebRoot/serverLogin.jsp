@@ -31,7 +31,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	String logPwd = request.getParameter("logPwd");
     	//校验
     	boolean isOk =  UserInfo.findUser(logName,logPwd);
-    	
     	if(isOk==false){
     		//失败
     		String msg = "<script>alert('用户名或者密码有误!请检查');</script>";
@@ -43,6 +42,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		//生命周期:浏览器不关闭,该session一直存在
     		User user = new User(logName,logPwd);
     		session.setAttribute("user", user);
+    		/**
+    			保存用户信息到cookie
+    			cookie保存到response中
+    		*/
+    		Cookie co_logname = new Cookie("username",logName);
+    		co_logname.setMaxAge(3600);//设置过期时间;单位秒
+    		Cookie co_logpwd = new Cookie("userpwd",logPwd);
+    		co_logpwd.setMaxAge(3600);//设置过期时间;单位秒
+    		response.addCookie(co_logname);
+    		response.addCookie(co_logpwd);
     		//响应.重定向(不会影响session中的值)
     		response.sendRedirect("index.jsp");
     	}
