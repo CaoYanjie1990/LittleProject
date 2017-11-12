@@ -1,0 +1,22 @@
+jstl:
+
+C:OUT
+	escapeXml="false";关闭转义:将文本中的标签输出为html而不是文本
+
+servlet修改后一定要重启tomcat
+
+servlet的创建
+	有两种方式创建servlet
+		方式一:在某个文件夹下右键-new-other-servlet-next 起名字(必须以Servlet结尾)-next 根据自身需求修改 URL(必须/开头)
+		            基本不需要在web.xml中重新配置
+		
+		方式二:在某个文件夹下右键-new-class-next 起名字(必须以Servlet结尾)
+			   在该class中继承HTTPServlet 重写 doGet和doPost
+
+servlet的配置
+	在web.xml中配置servlet时,需要注意以下几点:
+		1:serlvet节点和servlet-mapping节点必须都有
+		2:servlet节点中的servlet-class必须是存在的
+		  servlet节点的servlet-name必须是不重复
+		3:servlet-mapping节点的servlet-name必须和servlet节点的servlet-name一致
+		  servlet-mapping节点中的url-pattern必须以/开头。而且后面所跟的值不允许重复

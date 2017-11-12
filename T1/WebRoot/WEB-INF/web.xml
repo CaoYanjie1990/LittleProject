@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name></display-name>
+  <!-- 配置了servlet -->
+  <servlet>
+  	<!-- servlet的名字(符合规范,不能重复) -->
+    <servlet-name>NewsDetailServlet</servlet-name>
+    <!-- servlet的全局限定名 -->
+    <servlet-class>com.zl.servlet.NewsDetailServlet</servlet-class>
+  </servlet>
+  <!-- 可以被访问(请求) -->
+  <servlet-mapping>
+    <!--  获取一个已经准备好的servlet(要求该name必须执行一个servlet节点中的servlet-name) -->
+    <servlet-name>NewsDetailServlet</servlet-name>
+    <!-- 该servlet拦截的url -->
+    <url-pattern>/newsDetail</url-pattern>
+  </servlet-mapping>	
+  
+  <!-- 手动配置servlet -->
+  <servlet>
+  	<servlet-name>DemoJspServelet</servlet-name>
+  	<servlet-class>com.zl.servlet.DemoJspServelet</servlet-class>
+  	<init-param>
+  		<param-name>characterEncoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserAddServlet</servlet-name>
+    <servlet-class>com.zl.servlet.UserAddServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>NewsDetailServlet2</servlet-name>
+    <servlet-class>com.zl.servlet.NewsDetailServlet2</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>queryUserServlet</servlet-name>
+    <servlet-class>com.zl.servlet.queryUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>TestFileUpLoadServlet</servlet-name>
+    <servlet-class>com.zl.servlet.TestFileUpLoadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.zl.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginOutServlet</servlet-name>
+    <servlet-class>com.zl.servlet.LoginOutServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+  
+  <servlet-mapping>
+  	<servlet-name>DemoJspServelet</servlet-name>
+  	<url-pattern>/demoJsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserAddServlet</servlet-name>
+    <url-pattern>/addUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewsDetailServlet2</servlet-name>
+    <url-pattern>/newsDetail2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>queryUserServlet</servlet-name>
+    <url-pattern>/findUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestFileUpLoadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginOutServlet</servlet-name>
+    <url-pattern>/loginout</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 过滤器 -->
+  <filter>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<filter-class>com.zl.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 如果两个filter可以拦截到同一个请求,则按照配置的顺序执行 -->
+  <filter>
+  	<filter-name>DisableCharacterFilter</filter-name>
+  	<filter-class>com.zl.filter.DisableCharacterFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>DisableCharacterFilter</filter-name>
+  	<url-pattern>/addUser</url-pattern>
+  </filter-mapping>
+    <filter>
+  	<filter-name>LoggerFilter</filter-name>
+  	<filter-class>com.zl.filter.LoggerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LoggerFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 监听器 -->
+  <listener>
+  	<listener-class>com.zl.listener.OnLineUserListener</listener-class>
+  </listener>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
